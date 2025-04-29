@@ -2,12 +2,12 @@ function drawShip(svg) {
     const ship = svg.append("g")
         .attr("transform", "translate(300, 300)");
 
-    // 1. Корпус (кастомный путь)
-    ship.append("path")
-        .attr("d", "M-50,20 L-30,-10 L30,-10 L50,20 Z")
+    // 1. Корпус
+    ship.append("polygon")
+        .attr("points", "-50,20 -30,-10 30,-10 50,20")
         .style("fill", "#8d6e63");
 
-    // 2. Палуба (прямоугольник)
+    // 2. Палуба
     ship.append("rect")
         .attr("x", -40)
         .attr("y", -20)
@@ -15,7 +15,7 @@ function drawShip(svg) {
         .attr("height", 10)
         .style("fill", "#5d4037");
 
-    // 3. Мачта (линия)
+    // 3. Мачта
     ship.append("line")
         .attr("x1", 0)
         .attr("y1", -10)
@@ -24,23 +24,30 @@ function drawShip(svg) {
         .style("stroke", "#5d4037")
         .style("stroke-width", 3);
 
-    // 4. Парус (треугольник)
-    ship.append("path")
-        .attr("d", "M0,-60 L0,-20 L40,-20 Z")
+    // 4. Парус
+    ship.append("polygon")
+        .attr("points", "0,-60 0,-20 40,-20")
         .style("fill", "#e3f2fd");
 
-    // 5-6. Волны (две кривые)
-    ship.append("path")
-        .attr("d", "M-80,25 Q-40,15 0,25 Q40,35 80,25")
-        .style("stroke", "#1e88e5")
-        .style("fill", "none")
-        .style("stroke-width", 2);
+    // Тело медузы
+    ship.append("circle")
+        .attr("cx", -50)
+        .attr("cy", 50)
+        .attr("r", 10)
+        .style("fill", "#ce93d8");
 
-    ship.append("path")
-        .attr("d", "M-80,30 Q-40,20 0,30 Q40,40 80,30")
-        .style("stroke", "#1e88e5")
-        .style("fill", "none")
-        .style("stroke-width", 2);
+    // Щупальца медузы
+    ship.append("line")
+        .attr("x1", -55).attr("y1", 55).attr("x2", -55).attr("y2", 70)
+        .style("stroke", "#ba68c8").style("stroke-width", 2);
+
+    ship.append("line")
+        .attr("x1", -50).attr("y1", 55).attr("x2", -50).attr("y2", 70)
+        .style("stroke", "#ba68c8").style("stroke-width", 2);
+
+    ship.append("line")
+        .attr("x1", -45).attr("y1", 55).attr("x2", -45).attr("y2", 70)
+        .style("stroke", "#ba68c8").style("stroke-width", 2);
 
     return ship;
 }

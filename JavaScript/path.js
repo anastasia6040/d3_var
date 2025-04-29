@@ -5,23 +5,20 @@
 
     const centerX = width / 2;
     const centerY = height / 2;
-    const radius = Math.min(width, height) * 0.4;
+    const radius = Math.min(width, height) * 0.35;
     const petals = 5;
-    const steps = 40;
 
     let data = [];
 
     for (let p = 0; p < petals; p++) {
-        // Начинаем с угла PI (влево) и двигаемся против часовой стрелки
         const startAngle = Math.PI - (2 * Math.PI * p) / petals;
         const endAngle = Math.PI - (2 * Math.PI * (p + 1)) / petals;
 
         data.push({ x: centerX, y: centerY }); // начало лепестка
 
-        for (let i = 0; i <= steps; i++) {
-            const t = i / steps;
-            const angle = startAngle + (endAngle - startAngle) * t;
-            const r = radius * Math.pow(Math.sin(t * Math.PI), 0.8);
+        for (let t = 0; t <= Math.PI; t += 0.1) {
+            const angle = startAngle + (endAngle - startAngle) * (t / Math.PI);
+            const r = radius * Math.pow(Math.sin(t), 0.8);
             const x = centerX + r * Math.cos(angle);
             const y = centerY + r * Math.sin(angle);
             data.push({ x, y });
@@ -32,6 +29,8 @@
 
     return data;
 }
+
+
 
 // Создаем путь и возвращаем его как DOM-элемент
 function drawPath() {
